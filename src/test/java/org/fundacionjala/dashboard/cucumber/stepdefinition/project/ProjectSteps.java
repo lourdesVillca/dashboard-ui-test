@@ -14,6 +14,8 @@ import org.fundacionjala.dashboard.ui.pages.menu.StoryServiceForm;
  */
 public class ProjectSteps {
 
+    private Map<String, String> tableProjectValues;
+
     /**
      * Method to Select the features.project option form the UI.
      */
@@ -23,7 +25,11 @@ public class ProjectSteps {
         StoryServiceForm storyServiceForm = widgetPage.clickTableWidgetType();
         ConfigTableProject configTableForm = storyServiceForm.clickOpenProject();
         ProjectTableWidget projectTableWidget = configTableForm.clickSaveConfigurationProject();
-        Map<String, String> tableProjectValues = projectTableWidget.getProjectTable();
+        tableProjectValues = projectTableWidget.getProjectTable();
+
+    }
+    public Map<String, String> getTableProjectValues() {
+        return tableProjectValues;
     }
 
 }

@@ -26,7 +26,7 @@ public class ProjectTableWidget extends AbstractBasePage{
     public final Map<String, String> getProjectTable() {
         Map<String, String> result = new HashMap<>();
         List<WebElement> projectTableHeader = projectTable.findElements(By.tagName("th"));
-        List<WebElement> projectTableRow = projectTable.findElements(By.tagName("tr"));
+        List<WebElement> projectTableRow = projectTable.findElements(By.cssSelector("tbody>tr>td"));
 
         for (int i = 0; i < projectTableRow.size(); i++) {
             String key = Utils.replaceSpaceWithUnderscore(projectTableHeader.get(i).getText());

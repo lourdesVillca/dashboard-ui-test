@@ -1,5 +1,7 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.project;
 
+import java.util.Map;
+
 import cucumber.api.java.en.Then;
 import io.restassured.path.json.JsonPath;
 
@@ -13,9 +15,11 @@ import static org.junit.Assert.assertEquals;
 public class ProjectAsserts {
 
     private ResourcesSteps resources;
+    private ProjectSteps projectSteps;
 
-    public ProjectAsserts(ResourcesSteps resources) {
+    public ProjectAsserts(ResourcesSteps resources, ProjectSteps projectSteps) {
         this.resources = resources;
+        this.projectSteps = projectSteps;
     }
 
     /**
@@ -23,12 +27,11 @@ public class ProjectAsserts {
      */
     @Then("^Validate project table against pivotal project$")
     public void allInformationOfPivotalTrackerProjectsShouldBeDisplayedInProjectTableWidgetOfMach() {
+        Map<String, String> tableProjectValues = projectSteps.getTableProjectValues();
         JsonPath jsonPath = resources.getResponse().jsonPath();
-//        assertEquals(jsonPath.get("name"), tableProjectValues.get("name"));
-//        assertEquals(jsonPath.get("current_iteration_number"), tableProjectValues.get("current_iteration"));
-//        assertEquals(jsonPath.get("week_start_day"), tableProjectValues.get("week_start_date"));
-        assertEquals(jsonPath.get("name"), "AT01 project-01");
-        assertEquals(jsonPath.get("week_start_day"), "Monday");
+        assertEquals(jsonPath.get("name"), tableProjectValues.get("name"));
+        assertEquals(jsonPath.get("current_iteration_number").toString(),tableProjectValues.get("current_iteration"));
+        assertEquals(jsonPath.get("week_start_day"), tableProjectValues.get("week_start_day"));
     }
 
 }
