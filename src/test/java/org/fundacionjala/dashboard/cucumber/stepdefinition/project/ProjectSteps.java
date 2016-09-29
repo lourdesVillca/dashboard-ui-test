@@ -1,5 +1,6 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.project;
 
+import java.util.List;
 import java.util.Map;
 
 import cucumber.api.java.en.When;
@@ -14,7 +15,7 @@ import org.fundacionjala.dashboard.ui.pages.menu.StoryServiceForm;
  */
 public class ProjectSteps {
 
-    private Map<String, String> tableProjectValues;
+    private List<Map<String, String>> tableProjectValues;
 
     /**
      * Method to Select the features.project option form the UI.
@@ -28,7 +29,7 @@ public class ProjectSteps {
         tableProjectValues = projectTableWidget.getProjectTable();
 
     }
-    public Map<String, String> getTableProjectValues() {
+    public List<Map<String, String>> getTableProjectValues() {
         return tableProjectValues;
     }
 

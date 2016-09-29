@@ -1,5 +1,6 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.api;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import org.fundacionjala.dashboard.api.RequestManager;
 public class ResourcesSteps {
 
     private Response resp;
+    private List<Response> responseList;
 
     /**
      * Method to store the response.
@@ -51,13 +53,15 @@ public class ResourcesSteps {
     /**
      * Method to validate the post request for a given list of map.
      *
-     * @param endPoint end point of the post request.
-     * @param jsonData List of data in map format.
+     * @param endPoint     end point of the post request.
+     * @param jsonDataList List of data in map format.
      */
     @When("^I send a POST request with list to (.*)")
-    public void iSendAPostRequestWithListTo(final String endPoint, final List<Map<String, Object>> jsonData) {
-        for(int i = 0; i< jsonData.size();i++){
-            resp = RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData.get(i));
+    public void iSendAPostRequestWithListTo(final String endPoint, final List<Map<String, Object>> jsonDataList) {
+        responseList = new ArrayList<>();
+        for (Map<String, Object> jsonData : jsonDataList) {
+            resp = RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData);
+            responseList.add(resp);
         }
     }
 
@@ -89,5 +93,14 @@ public class ResourcesSteps {
      */
     public Response getResponse() {
         return resp;
+    }
+
+    /**
+     * Get the Response List.
+     *
+     * @return the responseList.
+     */
+    public List<Response> getResponseList() {
+        return responseList;
     }
 }
