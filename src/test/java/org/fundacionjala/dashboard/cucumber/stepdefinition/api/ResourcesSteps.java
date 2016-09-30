@@ -19,6 +19,10 @@ public class ResourcesSteps {
     private Response resp;
     private List<Response> responseList;
 
+    public ResourcesSteps() {
+        responseList = new ArrayList<>();
+    }
+
     /**
      * Method to store the response.
      *
@@ -36,7 +40,7 @@ public class ResourcesSteps {
      */
     @When("^I send a GET request to (.*)$")
     public void iSendAGetRequestTo(final String endPoint) {
-        resp = RequestManager.get(Mapper.mapEndpoint(endPoint));
+        responseList.add(RequestManager.get(Mapper.mapEndpoint(endPoint)));
     }
 
     /**
@@ -47,7 +51,7 @@ public class ResourcesSteps {
      */
     @When("^I send a POST request to (.*)")
     public void iSendAPostRequestTo(final String endPoint, final Map<String, Object> jsonData) {
-        resp = RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData);
+        responseList.add(RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData));
     }
 
     /**
@@ -58,10 +62,8 @@ public class ResourcesSteps {
      */
     @When("^I send a POST request with list to (.*)")
     public void iSendAPostRequestWithListTo(final String endPoint, final List<Map<String, Object>> jsonDataList) {
-        responseList = new ArrayList<>();
         for (Map<String, Object> jsonData : jsonDataList) {
-            resp = RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData);
-            responseList.add(resp);
+            responseList.add(RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData));
         }
     }
 
@@ -73,7 +75,7 @@ public class ResourcesSteps {
      */
     @When("^I send a PUT request to (.*)$")
     public void iSendAPutRequestTo(final String endPoint, final Map<String, Object> jsonData) {
-        resp = RequestManager.put(Mapper.mapEndpoint(endPoint), jsonData);
+        responseList.add(RequestManager.put(Mapper.mapEndpoint(endPoint), jsonData));
     }
 
     /**
@@ -83,7 +85,7 @@ public class ResourcesSteps {
      */
     @When("^I send a DELETE request to (.*)$")
     public void iSendADeleteRequestTo(final String endPoint) {
-        resp = RequestManager.delete(Mapper.mapEndpoint(endPoint));
+        responseList.add(RequestManager.delete(Mapper.mapEndpoint(endPoint)));
     }
 
     /**

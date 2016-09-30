@@ -30,19 +30,10 @@ public class ApiAsserts {
      */
     @Then("^I expect the status code (\\d+)$")
     public void iExpectStatusCode(final int statusCode) {
-        assertEquals(statusCode, resourcesSteps.getResponse().getStatusCode());
-    }
-
-    /**
-     * Method to validate the status code for a List of response.
-     *
-     * @param statusCode the status code expected.
-     */
-    @Then("^I expect the status code (\\d+) for each response$")
-    public void iExpectStatusCodeForEachResponse(final int statusCode) {
         List<Response> responseList = resourcesSteps.getResponseList();
-        for (Response resp: responseList) {
+        for (Response resp : responseList) {
             assertEquals(statusCode, resp.getStatusCode());
         }
     }
+
 }
