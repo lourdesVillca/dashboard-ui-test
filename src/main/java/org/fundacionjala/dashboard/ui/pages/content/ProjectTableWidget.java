@@ -28,13 +28,13 @@ public class ProjectTableWidget extends AbstractBasePage {
      */
     public final List<Map<String, String>> getProjectTable() {
         List<Map<String, String>> result = new ArrayList<>();
-        Map<String, String> rowResult = new HashMap<>();
         List<WebElement> projectTableHeader = projectTable.findElements(By.tagName("th"));
 
         int rowCount = projectTable.findElements(By.cssSelector("tbody>tr")).size();
 
         for (int i = 0; i < rowCount; i++) {
             List<WebElement> projectTableRow = projectTable.findElements(By.cssSelector("tbody>tr")).get(i).findElements(By.cssSelector("tbody>tr>td"));
+            Map<String, String> rowResult = new HashMap<>();
             for (int j = 0; j < projectTableRow.size(); j++) {
                 String key = Utils.replaceSpaceWithUnderscore(projectTableHeader.get(j).getText());
                 rowResult.put(key, projectTableRow.get(j).getText());
@@ -42,10 +42,6 @@ public class ProjectTableWidget extends AbstractBasePage {
             result.add(rowResult);
         }
         Collections.sort(result, (row1, row2) -> row1.get("name").compareTo(row2.get("name")));
-
         return result;
-
     }
-
-
 }

@@ -16,7 +16,7 @@ public class GlobalHooks {
 
     private static final String PIVOTAL_TRACKER_SERVICE_NAME = "Pivotal Tracker";
 
-    private boolean beforeAllFlag;
+    private static boolean beforeAllFlag;
 
     @Before
     public void beforeAll() {
