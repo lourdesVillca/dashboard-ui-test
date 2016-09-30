@@ -24,9 +24,9 @@ public class ApiAsserts {
     }
 
     /**
-     * Method to validate the status code of the response.
+     * Method to validate the status code of all response.
      *
-     * @param statusCode the status code expected.
+     * @param statusCode the expected status code.
      */
     @Then("^I expect the status code (\\d+)$")
     public void iExpectStatusCode(final int statusCode) {
@@ -35,5 +35,4 @@ public class ApiAsserts {
             assertEquals(statusCode, resp.getStatusCode());
         }
     }
-
 }

@@ -19,6 +19,9 @@ public class ResourcesSteps {
     private Response resp;
     private List<Response> responseList;
 
+    /**
+     * Constructor.
+     */
     public ResourcesSteps() {
         responseList = new ArrayList<>();
     }
